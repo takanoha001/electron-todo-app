@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ShoppingList</title>
+</head>
+<body>
+  <h1>ShoppingList f</h1>
+  <h2>add command+a</h2>
+  <h2>clean command+c</h2>
+  <ul></ul>
+  <script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    const ul = document.querySelector('ul');
+    
+
+    //catch this mainWindow.webContents.send("item:add", item);
+    ipcRenderer.on('item:add', function(e, item){
+      console.log("mainWindow.html " + item);
+      const li = document.createElement('li');
+      const itemText = document.createTextNode(item);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+    });
+
+    //catch this 
+    ipcRenderer.on('item:clear', function(e, item){
+      console.log("mainWindow.html " + item);
+      ul.innerHTML = "";
+    });
+
+    //remove item
+    ul.addEventListener('dblclick', removeItem);
+
+    function removeItem(e){ //passing event e
+      e.target.remove();
+    }
+
+    </script>
+</body>
+</html>

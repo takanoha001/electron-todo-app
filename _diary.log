@@ -1,0 +1,30 @@
+
+https://www.youtube.com/watch?v=kN1Czs0m1SU&ab_channel=TraversyMedia
+
+
+mkdir shoppingList && cd shoppingList
+npm init
+npm install --save electron
+update package.json to include "electron ."
+
+
+Emmet
+!
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+
+
+addWindow.html
+//send: ipcRenderer.send('item:add', item);
+
+main.js 
+//receive: ipcMain.on("item:add", function (e, item) {
+//send: mainWindow.webContents.send("item:add", item);
+
+mainwindow.html
+//receive: ipcRenderer.on('item:add', function(e, item){
+
